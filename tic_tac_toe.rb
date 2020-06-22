@@ -3,11 +3,36 @@ class Board
 		@display = []
 		for i in 0..4
 			if i % 2 == 0 
-				@display += ["  |   |  "]
+				@display += ["   |   |   "]
 			else
-				@display += ["---------"]
+				@display += ["-----------"]
 			end
 		end
+	end
+
+	def update_display(location, marker)
+		row = 0
+		column = 0
+
+		case location
+		when 1..3
+			row = 0
+		when 4..6
+			row = 2
+		else
+			row = 4
+		end
+
+		case location
+		when 1, 4, 7
+			column = 1
+		when 2, 5, 8
+			column = 5
+		else
+			column = 9
+		end
+
+		@display[row][column] = marker
 	end
 	
 	def show_display
@@ -29,9 +54,19 @@ class Player
 	end
 end
 
+class Game
+	def initialize
+		@player1 = Player.new("X")
+		@player2 = Player.new("O")
+	end
 
+	def start_game
+	end
+end	
+
+		
 x = Board.new
+for i in 1..9
+	x.update_display(i, "X")
+end
 x.show_display
-bob = Player.new("X")
-puts bob.mark_spot
-
